@@ -1,5 +1,17 @@
 {
   "name": "time_to_answer",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "add": "^2.0.6",
+    "bootstrap": "3.3.7",
+    "font-awesome": "4.6.3",
+    "jquery": "3.3.1",
+    "metismenu": "3.0.3",
+    "yarn": "^1.22.15"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:waitoair/time_to_answer.git",
+  "author": "luana saraiva <luana_saraiva2@hotmail.com>",
+  "license": "MIT"
 }
