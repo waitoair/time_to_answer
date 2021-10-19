@@ -9,6 +9,7 @@ namespace :dev do
       show_spinner("Criando Database") { %x(rails db:create) }
       show_spinner("Migrando Database") { %x(rails db:migrate) }
       show_spinner("Criando o Administrador Padrão...") { %x(rails dev:add_default_admin) }
+      show_spinner("Criando Administradores Extras...") { %x(rails dev:add_extra_admins) }
       show_spinner("Criando o Usuário Padrão...") { %x(rails dev:add_default_user) }
       # %x(rails dev:add_coins)
       # %x(rails dev:add_mining_type)
@@ -26,6 +27,17 @@ namespace :dev do
     )
   end
 
+  desc "Adiciona Administradores Extras"
+  task add_extra_admins: :environment do
+    10.times do |i|
+      Admin.create!(
+        email: Faker::Internet.email,
+        password: DEFAULT_PASSWORD,
+        password_confirmation: DEFAULT_PASSWORD
+      )
+    end
+  end
+
   desc "Adiciona o Usuário Padrão"
   task add_default_user: :environment do
     User.create!(
@@ -37,7 +49,7 @@ namespace :dev do
 
   private
 
-  def show_spinner(starting_msg, ending_msg = "Conlcuído")
+  def show_spinner(starting_msg, ending_msg = "Concluído")
     spinner = TTY::Spinner.new("[:spinner] #{starting_msg}...")
     spinner.auto_spin
     yield
